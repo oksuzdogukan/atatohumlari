@@ -7,7 +7,7 @@ import jwt from "jsonwebtoken";
 // };
 
 // sadece ilk kurulum icin
-export const registerAdmin = async (req, res, next) => {
+export const registerAdmin = async (req, res) => {
   const { username, password } = req.body;
 
   try {
@@ -35,7 +35,7 @@ export const registerAdmin = async (req, res, next) => {
   }
 };
 
-export const loginAdmin = async (req, res, next) => {
+export const loginAdmin = async (req, res) => {
   const { username, password } = req.body;
 
   try {
