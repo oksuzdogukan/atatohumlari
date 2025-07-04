@@ -6,7 +6,7 @@ const commentSchema = new mongoose.Schema({
     ref: "Post",
     required: true,
   },
-  name: {
+  user: {
     type: String,
     required: [true, "İsim zorunlu"],
   },

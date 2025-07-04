@@ -11,7 +11,7 @@ export const registerAdmin = async (req, res) => {
   const { username, password } = req.body;
 
   try {
-    const existingAdmin = await Admin.find({ username });
+    const existingAdmin = await Admin.findOne({ username });
 
     if (existingAdmin) {
       return res.status(400).json({ message: "Admin zaten kayitli" });
@@ -26,7 +26,7 @@ export const registerAdmin = async (req, res) => {
 
     const passwordHashed = await bcrypt.hash(password, 12);
 
-    const admin = new Admin({ username, passwordHashed });
+    const admin = new Admin({ username, password: passwordHashed });
     await admin.save();
 
     res.status(201).json({ message: "Admin olusturuldu" });
@@ -43,13 +43,13 @@ export const loginAdmin = async (req, res) => {
 
     // admin yoksa
     if (!admin) {
-      res.status(401).json({ message: "Gecersiz kullanici adi veya parola" });
+      res.status(401).json({ message: "Gecersiz kullanici adi" });
     }
 
     // sifre karsilastirma
-    const isMatch = await admin.compare(password, admin.password);
+    const isMatch = await bcrypt.compare(password, admin.password);
     if (!isMatch) {
-      res.status(401).json({ message: "Gecersiz kullanici adi veya parola" });
+      res.status(401).json({ message: "Gecersiz parola" });
     }
 
     const token = jwt.sign(
