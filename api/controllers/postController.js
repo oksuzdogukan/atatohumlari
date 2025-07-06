@@ -41,7 +41,7 @@ export const getSinglePost = async (req, res) => {
   try {
     const post = await Post.findOne({ slug });
     if (!post) {
-      res.status(404).json({ message: "Post bulunamadi" });
+      res.status(404).json({ message: "Post bulunamadi!!" });
     }
 
     res.status(200).json(post);
@@ -55,20 +55,20 @@ export const getSinglePost = async (req, res) => {
 // sadece admin
 export const updatePost = async (req, res) => {
   const { id } = req.params;
+  const { title, content, category, image } = req.body;
 
   try {
-    const post = await Post.findByIdAndUpdate(
-      id,
-      {
-        $set: {
-          title: req.body.title,
-          content: req.body.content,
-          category: req.body.category,
-          image: req.body.image,
-        },
-      },
-      { new: true }
-    );
+    const updateData = {
+      content,
+      category,
+      image,
+    };
+
+    if (title) {
+      updateData.title = title;
+      updateData.slug = slugify(title, { lower: true, strict: true });
+    }
+    const post = await Post.findByIdAndUpdate(id, updateData, { new: true });
 
     res.status(200).json(post);
   } catch (error) {
@@ -84,7 +84,7 @@ export const deletePost = async (req, res) => {
 
   try {
     const post = await Post.findByIdAndDelete(id);
-    res.status(200).json({ message: "Post silindi" });
+    res.status(200).json({ message: "Post silindi", post: post });
   } catch (error) {
     res.status(500).json({ message: "Post silinemdi", error: error.message });
   }

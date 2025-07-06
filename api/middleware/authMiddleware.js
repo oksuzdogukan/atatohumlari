@@ -20,6 +20,6 @@ export const protect = async (req, res, next) => {
     req.admin = admin;
     next();
   } catch (error) {
-    res.status(401).json({ message: "Token doğrulanamadı" });
+    res.status(401).json({ message: "Token doğrulanamadi" });
   }
 };
