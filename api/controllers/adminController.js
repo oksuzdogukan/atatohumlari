@@ -29,9 +29,9 @@ export const registerAdmin = async (req, res) => {
     const admin = new Admin({ username, password: passwordHashed });
     await admin.save();
 
-    res.status(201).json({ message: "Admin olusturuldu" });
+    return res.status(201).json({ message: "Admin olusturuldu" });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    return res.status(500).json({ message: error.message });
   }
 };
 
@@ -43,13 +43,13 @@ export const loginAdmin = async (req, res) => {
 
     // admin yoksa
     if (!admin) {
-      res.status(401).json({ message: "Gecersiz kullanici adi" });
+      return res.status(401).json({ message: "Gecersiz kullanici adi" });
     }
 
     // sifre karsilastirma
     const isMatch = await bcrypt.compare(password, admin.password);
     if (!isMatch) {
-      res.status(401).json({ message: "Gecersiz parola" });
+      return res.status(401).json({ message: "Geçersiz Parola" });
     }
 
     const token = jwt.sign(
@@ -58,9 +58,9 @@ export const loginAdmin = async (req, res) => {
       { expiresIn: "1d" }
     );
 
-    res.status(200).json({ token });
+    return res.status(200).json({ token });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    return res.status(500).json({ message: error.message });
   }
 };
 

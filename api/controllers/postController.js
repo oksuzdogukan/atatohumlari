@@ -15,7 +15,7 @@ export const createPost = async (req, res) => {
       slug,
     });
     await newPost.save();
-    res.status(201).json({ message: "Post olusturuldu", post: newPost });
+    return res.status(201).json({ message: "Post olusturuldu", post: newPost });
   } catch (error) {
     return res.status(500).json({
       message: "Post olusturulurken bir hata oluştu",
@@ -27,7 +27,7 @@ export const createPost = async (req, res) => {
 export const getAllPosts = async (req, res) => {
   try {
     const posts = await Post.find().sort({ createdAt: -1 });
-    res.status(200).json(posts);
+    return res.status(200).json(posts);
   } catch (error) {
     return res
       .status(500)
@@ -44,7 +44,7 @@ export const getSinglePost = async (req, res) => {
       res.status(404).json({ message: "Post bulunamadi!!" });
     }
 
-    res.status(200).json(post);
+    return res.status(200).json(post);
   } catch (error) {
     return res
       .status(500)
@@ -70,9 +70,9 @@ export const updatePost = async (req, res) => {
     }
     const post = await Post.findByIdAndUpdate(id, updateData, { new: true });
 
-    res.status(200).json(post);
+    return res.status(200).json(post);
   } catch (error) {
-    res
+    return res
       .status(500)
       .json({ message: "Post guncellenemedi", error: error.message });
   }
@@ -84,8 +84,10 @@ export const deletePost = async (req, res) => {
 
   try {
     const post = await Post.findByIdAndDelete(id);
-    res.status(200).json({ message: "Post silindi", post: post });
+    return res.status(200).json({ message: "Post silindi", post: post });
   } catch (error) {
-    res.status(500).json({ message: "Post silinemdi", error: error.message });
+    return res
+      .status(500)
+      .json({ message: "Post silinemdi", error: error.message });
   }
 };
