@@ -1,14 +1,14 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import Home from "../pages/Home";
-import Login from "../pages/Login";
-import OnlyAdminRoute from "../components/OnlyAdminRoute";
-import AdminDashboard from "../pages/AdminDashboard";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import OnlyAdminRoute from "./components/OnlyAdminRoute";
+import AdminDashboard from "./pages/AdminDashboard";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { checkAuth } from "../redux/slices/authSlice";
+import { checkAuth } from "./redux/slices/authSlice";
 
 function App() {
   const location = useLocation();
