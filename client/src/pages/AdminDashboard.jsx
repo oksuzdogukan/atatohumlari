@@ -28,6 +28,8 @@ function AdminDashboard() {
         return <DeletePost />;
       case "update-post":
         return <UpdatePost />;
+      case "":
+        return <div>AdminDashboard</div>;
       default:
         return <div>Böyle bir sayfa yok</div>;
     }

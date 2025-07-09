@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 function DashboardAside() {
   const navigations = [
@@ -20,8 +20,10 @@ function DashboardAside() {
     },
   ];
   return (
-    <div className="flex flex-col fixed left-0 gap-4 bg-gray-500 text-white p-6 min-h-screen">
-      <div className="text-2xl font-bold">Admin Panel</div>
+    <div className="flex flex-col fixed left-0 gap-4 bg-gray-500 text-white p-6 min-h-screen rounded-xl">
+      <a className="text-2xl font-bold" href="/dashboard">
+        Admin Panel
+      </a>
 
       <div className="flex flex-col gap-4">
         {navigations.map((nav, index) => {
