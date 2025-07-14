@@ -9,6 +9,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { checkAuth } from "./redux/slices/authSlice";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const location = useLocation();
@@ -35,6 +36,7 @@ function App() {
 
   return (
     <>
+      <ToastContainer />
       {shouldShow && <Header />}
 
       <Routes>

@@ -42,6 +42,7 @@ function AllPosts() {
             category={post.category}
             image={post.image}
             createdAt={post.createdAt}
+            _id={post._id}
           />
         );
       })}

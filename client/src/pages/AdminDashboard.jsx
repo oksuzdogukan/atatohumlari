@@ -3,7 +3,6 @@ import DashboardAside from "../components/admin/DashboardAside";
 import { useLocation } from "react-router-dom";
 import AllPosts from "../components/admin/AllPosts";
 import AddPost from "../components/admin/AddPost";
-import DeletePost from "../components/admin/DeletePost";
 import UpdatePost from "../components/admin/UpdatePost";
 
 function AdminDashboard() {
@@ -24,8 +23,6 @@ function AdminDashboard() {
         return <AllPosts />;
       case "add-post":
         return <AddPost />;
-      case "delete-post":
-        return <DeletePost />;
       case "update-post":
         return <UpdatePost />;
       case "":

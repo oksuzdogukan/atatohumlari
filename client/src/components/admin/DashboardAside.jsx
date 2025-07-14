@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function DashboardAside() {
   const navigations = [
@@ -9,10 +9,6 @@ function DashboardAside() {
     {
       label: "Add Post",
       href: "add-post",
-    },
-    {
-      label: "Delete Post",
-      href: "delete-post",
     },
     {
       label: "Update Post",
