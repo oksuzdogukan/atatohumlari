@@ -1,6 +1,6 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import PostCard from "../PostCard";
+import apiClient from "../../api/apiClient";
 
 function AllPosts() {
   const [posts, setPosts] = useState([]);
@@ -10,9 +10,9 @@ function AllPosts() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/get-all-posts");
+        const res = await apiClient.get("/api/get-all-posts");
         setPosts(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       } catch (error) {
         console.log("Postlar Alinirken Hata", error);
         setError(error);
